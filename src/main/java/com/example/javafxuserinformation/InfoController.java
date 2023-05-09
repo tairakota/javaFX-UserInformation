@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.stream.Collectors;
+
 public class InfoController {
     @FXML private ComboBox<String> jobComboBox;
     @FXML private TextField nameTextField;
@@ -20,10 +22,10 @@ public class InfoController {
     @FXML private TableColumn<User, String> jobColumn;
     @FXML private TableColumn<User, Integer> scoreColumn;
 
+    ObservableList<String> items
+            = FXCollections.observableArrayList("株式会社A","株式会社B","株式会社C");
     @FXML
     private void initialize() {
-        ObservableList<String> items
-                = FXCollections.observableArrayList("株式会社A","株式会社B","株式会社C");
         jobComboBox.setItems(items);
         jobComboBoxEdit.setItems(items);
 
@@ -33,6 +35,9 @@ public class InfoController {
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
 
         tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        User dafaultuser = new User("株式会社A", "aaa", 10);
+        dafaultuser.setId(1);
+        tableView.getItems().add(dafaultuser);
     }
 
     @FXML
@@ -56,10 +61,12 @@ public class InfoController {
         }
     }
     @FXML
-    private void selectColumn(ActionEvent actionEvent) {
-        User user = tableView.getSelectionModel().getSelectedItem();
-        nameTextFieldEdit.setText("test");
-        scoreTextFieldEdit.setText(String.valueOf(user.getScore()));
+    private void onEdit(ActionEvent actionEvent) {
+        User edituser = tableView.getSelectionModel().getSelectedItem();
+        jobComboBoxEdit.setValue(edituser.getJob());
+        nameTextFieldEdit.setText(edituser.getName());
+        scoreTextFieldEdit.setText(String.valueOf(edituser.getScore()));
     }
+
 
 }
