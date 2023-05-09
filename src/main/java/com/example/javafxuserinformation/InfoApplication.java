@@ -17,7 +17,7 @@ public class InfoApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(InfoApplication.class.getResource("userinfo-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("ユーザー管理アプリ");
+        stage.setTitle("User管理アプリ");
         stage.setScene(scene);
         stage.show();
     }
