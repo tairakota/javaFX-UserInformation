@@ -4,16 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class InfoController {
     @FXML private ComboBox<String> jobComboBox;
     @FXML private TextField nameTextField;
     @FXML private TextField scoreTextField;
+    @FXML private ComboBox<String> jobComboBoxEdit;
+    @FXML private TextField nameTextFieldEdit;
+    @FXML private TextField scoreTextFieldEdit;
     @FXML private TableView<User> tableView;
     @FXML private TableColumn<User, Integer> idColumn;
     @FXML private TableColumn<User, String> nameColumn;
@@ -27,11 +27,14 @@ public class InfoController {
         ObservableList<String> items
                 = FXCollections.observableArrayList("株式会社A","株式会社B","株式会社C");
         jobComboBox.setItems(items);
+        jobComboBoxEdit.setItems(items);
 
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("job"));
-        jobColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        jobColumn.setCellValueFactory(new PropertyValueFactory<>("job"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
+
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
     @FXML
@@ -43,6 +46,19 @@ public class InfoController {
         user.setId(idCounter);
         idCounter++;
         tableView.getItems().add(user);
+    }
+    @FXML
+    private void onDelete(ActionEvent actionEvent) {
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            tableView.getItems().remove(selectedIndex);
+        }
+    }
+    @FXML
+    private void selectColumn(ActionEvent actionEvent) {
+        User user = tableView.getSelectionModel().getSelectedItem();
+        nameTextFieldEdit.setText("test");
+        scoreTextFieldEdit.setText(String.valueOf(user.getScore()));
     }
 
 }
