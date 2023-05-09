@@ -47,7 +47,7 @@
             <ComboBox fx:id="jobComboBoxEdit" prefWidth="150.0" GridPane.columnIndex="1" />
             <TextField fx:id="nameTextFieldEdit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="scoreTextFieldEdit" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="更新" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#onUpdate" text="更新" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Button fx:id="onDeleteBtn" mnemonicParsing="false" onAction="#onDelete" text="削除" GridPane.rowIndex="3" />
          </children>
       </GridPane>

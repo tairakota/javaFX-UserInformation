@@ -33,6 +33,9 @@ public class InfoController {
         jobColumn.setCellValueFactory(new PropertyValueFactory<>("job"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
+        jobColumn.setSortable(false);
+        nameColumn.setSortable(false);
+        scoreColumn.setSortable(false);
 
         tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         User dafaultuser = new User("株式会社A", "aaa", 10);
@@ -66,6 +69,23 @@ public class InfoController {
         jobComboBoxEdit.setValue(edituser.getJob());
         nameTextFieldEdit.setText(edituser.getName());
         scoreTextFieldEdit.setText(String.valueOf(edituser.getScore()));
+    }
+    @FXML
+    private void onUpdate(ActionEvent actionEvent) {
+        if (jobComboBoxEdit != null && nameTextFieldEdit != null && scoreTextFieldEdit != null) {
+            User selectedIndex = tableView.getSelectionModel().getSelectedItem();
+            String job = jobComboBoxEdit.getValue();
+            String name = nameTextFieldEdit.getText();
+            int score = Integer.parseInt(scoreTextFieldEdit.getText());
+            User user = new User(job, name, score);
+            user.setId(selectedIndex.getId());
+            tableView.getItems().remove(selectedIndex);
+            tableView.getItems().add(user);
+        }
+        jobComboBoxEdit.setValue(null);
+        nameTextFieldEdit.setText(null);
+        scoreTextFieldEdit.setText(null);
+        tableView.getSortOrder().add(idColumn);
     }
 
 
