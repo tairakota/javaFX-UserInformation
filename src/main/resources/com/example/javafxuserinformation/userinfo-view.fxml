@@ -23,9 +23,9 @@
             <Label text="所属企業" />
             <Label text="名前" GridPane.rowIndex="1" />
             <Label text="スコア" GridPane.rowIndex="2" />
-            <ComboBox fx:id="jobCompany" prefWidth="150.0" GridPane.columnIndex="1" />
-            <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="score" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="jobComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
+            <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="scoreTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button fx:id="onAddBtn" mnemonicParsing="false" onAction="#onAdd" text="追加" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
@@ -51,12 +51,12 @@
             <Button mnemonicParsing="false" text="削除" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <TableView fx:id="columnInfo" layoutX="86.0" layoutY="195.0" prefHeight="173.0" prefWidth="419.0">
+      <TableView fx:id="tableView" layoutX="86.0" layoutY="195.0" prefHeight="173.0" prefWidth="419.0">
         <columns>
-          <TableColumn prefWidth="66.33332824707031" text="ID" />
-          <TableColumn prefWidth="156.0" text="所属企業" />
-            <TableColumn prefWidth="105.0" text="名前" />
-            <TableColumn prefWidth="92.33331298828125" text="スコア" />
+          <TableColumn fx:id="idColumn" prefWidth="66.33332824707031" text="ID" />
+          <TableColumn fx:id="jobColumn" prefWidth="156.0" text="所属企業" />
+            <TableColumn fx:id="nameColumn" prefWidth="105.0" text="名前" />
+            <TableColumn fx:id="scoreColumn" prefWidth="92.33331298828125" text="スコア" />
         </columns>
       </TableView>
    </children>
