@@ -20,8 +20,6 @@ public class InfoController {
     @FXML private TableColumn<User, String> jobColumn;
     @FXML private TableColumn<User, Integer> scoreColumn;
 
-    private int idCounter = 1;
-
     @FXML
     private void initialize() {
         ObservableList<String> items
@@ -39,12 +37,15 @@ public class InfoController {
 
     @FXML
     public void onAdd(ActionEvent actionEvent) {
+        int maxId = tableView.getItems().stream()
+                .mapToInt(User::getId)
+                .max()
+                .orElse(0);
         String job = jobComboBox.getValue();
         String name = nameTextField.getText();
         int score = Integer.parseInt(scoreTextField.getText());
         User user = new User(job, name, score);
-        user.setId(idCounter);
-        idCounter++;
+        user.setId(maxId + 1);
         tableView.getItems().add(user);
     }
     @FXML
