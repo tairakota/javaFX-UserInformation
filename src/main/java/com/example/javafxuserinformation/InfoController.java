@@ -24,6 +24,7 @@ public class InfoController {
 
     ObservableList<String> items
             = FXCollections.observableArrayList("株式会社A","株式会社B","株式会社C");
+    int editId;
     @FXML
     private void initialize() {
         jobComboBox.setItems(items);
@@ -69,17 +70,18 @@ public class InfoController {
         jobComboBoxEdit.setValue(edituser.getJob());
         nameTextFieldEdit.setText(edituser.getName());
         scoreTextFieldEdit.setText(String.valueOf(edituser.getScore()));
+        editId = edituser.getId();
     }
     @FXML
     private void onUpdate(ActionEvent actionEvent) {
         if (jobComboBoxEdit != null && nameTextFieldEdit != null && scoreTextFieldEdit != null) {
             User selectedIndex = tableView.getSelectionModel().getSelectedItem();
+            tableView.getItems().remove(selectedIndex);
             String job = jobComboBoxEdit.getValue();
             String name = nameTextFieldEdit.getText();
             int score = Integer.parseInt(scoreTextFieldEdit.getText());
             User user = new User(job, name, score);
-            user.setId(selectedIndex.getId());
-            tableView.getItems().remove(selectedIndex);
+            user.setId(editId);
             tableView.getItems().add(user);
         }
         jobComboBoxEdit.setValue(null);

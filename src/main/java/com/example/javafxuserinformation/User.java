@@ -22,19 +22,10 @@ public class User {
     public String getJob() {
         return job;
     }
-    public void setJob() {
-        this.job = job;
-    }
     public String getName() {
         return name;
     }
-    public void serName() {
-        this.name = name;
-    }
     public int getScore() {
         return score;
-    }
-    public void setScore() {
-        this.score = score;
     }
 }
